@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-
-
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,33 +11,26 @@ class MyApp extends StatelessWidget {
       home: RandomWords(),
     );
   }
-
 }
-
-
 
 class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
-
-
   Widget _buildSuggestions() {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return const Divider(); /*2*/
+          if (i.isOdd) return const Divider();
 
-          final index = i ~/ 2; /*3*/
+          final index = i ~/ 2;
           if (index >= _suggestions.length) {
             _suggestions.addAll(generateWordPairs().take(10)); /*4*/
           }
           return _buildRow(_suggestions[index]);
         });
   }
-  // #enddocregion _buildSuggestions
 
-  // #docregion _buildRow
   Widget _buildRow(WordPair pair) {
     return ListTile(
       title: Text(
@@ -49,9 +39,7 @@ class _RandomWordsState extends State<RandomWords> {
       ),
     );
   }
-  // #enddocregion _buildRow
 
-  // #docregion RWS-build
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +49,7 @@ class _RandomWordsState extends State<RandomWords> {
       body: _buildSuggestions(),
     );
   }
-  // #enddocregion RWS-build
-  // #docregion RWS-var
 }
-// #enddocregion RWS-var
 
 class RandomWords extends StatefulWidget {
   @override
